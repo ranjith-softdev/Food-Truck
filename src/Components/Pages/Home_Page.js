@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { message } from "antd";
 
 const Home = () => {
   useEffect(() => {
@@ -75,24 +76,36 @@ const Home = () => {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+const messageApi = message;
 
-    if (validateForm()) {
-      // Proceed with form submission logic
-      console.log("Form submitted:", formData);
-      alert("Form Submitted Successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        lastName: "",
-        message: ""
-      });
-    } else {
-      console.log("Form validation failed");
-      alert("Make Sure All The Fields Are Filled Out!");
-    }
-  };
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  if (validateForm()) {
+    // Proceed with form submission logic
+    console.log("Form submitted:", formData);
+
+    // Simulate a successful form submission response
+    const response = { data: { message: "Data Submitted Successfully" } };
+    messageApi.open({
+      type: "success",
+      content: response.data.message || "Data Submitted Successfully"
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      lastName: "",
+      message: ""
+    });
+  } else {
+    console.log("Form validation failed");
+    messageApi.open({
+      type: "error",
+      content: "Make Sure All The Fields Are Filled Out!"
+    });
+  }
+};
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -157,8 +170,7 @@ const Home = () => {
           }`}
           onClick={scrollToTop}
         >
-          
-          {isVisible && (<FaArrowCircleUp className="fs-3" />)}
+          {isVisible && <FaArrowCircleUp className="fs-3" />}
         </div>
       </div>
 
@@ -213,7 +225,10 @@ const Home = () => {
 
       <Row data-aos="fade-up">
         <Col xs={12} sm={6} md={3} className="image-container p-5">
-          <div className="d-flex justify-content-center align-items-center flex-column text-light fs-5" data-aos="fade-up">
+          <div
+            className="d-flex justify-content-center align-items-center flex-column text-light fs-5"
+            data-aos="fade-up"
+          >
             <img
               className="img-fluid img-xs img-sm"
               src="/Images/icecream1.png"
@@ -224,7 +239,10 @@ const Home = () => {
           </div>
         </Col>
         <Col xs={12} sm={6} md={3} className="image-container p-5">
-          <div className="d-flex justify-content-center align-items-center flex-column text-light fs-5" data-aos="fade-up">
+          <div
+            className="d-flex justify-content-center align-items-center flex-column text-light fs-5"
+            data-aos="fade-up"
+          >
             <img
               className="img-fluid img-xs img-sm"
               src="/Images/icecream2.png"
@@ -235,7 +253,10 @@ const Home = () => {
           </div>
         </Col>
         <Col xs={12} sm={6} md={3} className="image-container p-5">
-          <div className="d-flex justify-content-center align-items-center flex-column text-light fs-5" data-aos="fade-up">
+          <div
+            className="d-flex justify-content-center align-items-center flex-column text-light fs-5"
+            data-aos="fade-up"
+          >
             <img
               className="img-fluid img-xs img-sm"
               src="/Images/icecream3.png"
@@ -246,7 +267,10 @@ const Home = () => {
           </div>
         </Col>
         <Col xs={12} sm={6} md={3} className="image-container p-5">
-          <div className="d-flex justify-content-center align-items-center flex-column text-light fs-5" data-aos="fade-up">
+          <div
+            className="d-flex justify-content-center align-items-center flex-column text-light fs-5"
+            data-aos="fade-up"
+          >
             <img
               className="img-fluid img-xs img-sm"
               src="/Images/icecream4.png"
